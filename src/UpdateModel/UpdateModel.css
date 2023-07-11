@@ -1,0 +1,51 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 10px;
+  font-family: serif;
+}
+.label {
+  font-size: 18px;
+  margin-left: 2px;
+  align-self: flex-start;
+  padding-left: 5%;
+}
+.input,
+.textarea {
+  width: 90%;
+  font-size: 16px;
+  border: 1px solid gray;
+  padding: 2px 3px 2px 5px;
+  border-radius: 3px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  background-color: #ececec;
+  text-transform: capitalize;
+}
+.textarea {
+  height: 100px;
+}
+.error-msg {
+  align-self: flex-start;
+  color: red;
+  padding-left: 5%;
+}
+
+.update-add-location-btn {
+  display: none;
+}
+.time {
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 4px;
+  background-color: #ececec;
+  margin-bottom: 5px;
+}
+.time-label {
+  font-size: 18px;
+  align-self: flex-start;
+  margin-bottom: 5px;
+}

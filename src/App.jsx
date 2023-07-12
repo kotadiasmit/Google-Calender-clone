@@ -1,27 +1,27 @@
-//import SchedulerCalendar from "scheduler-calendarr";
-import moment from "moment";
+import moment from "moment/moment";
 import { useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useSelector } from "react-redux";
+import AddUpdateEvent from "./AddUpdateEvent/AddUpdateEvent";
 import "./App.css";
-import UpdateModel from "./UpdateModel/UpdateModel";
 
 const App = () => {
-  const localizer = momentLocalizer(moment);
   const [isUpdateEvent, setIsUpdateEvent] = useState(false);
   const [isAddEvent, setIsAddEvent] = useState(false);
   const [addAndUpdateEvent, setAddAndUpdateEvent] = useState("");
 
+  const localizer = momentLocalizer(moment);
   const eventsData = useSelector((state) => state.eventStore.eventList);
-  console.log(eventsData);
 
   const onAddEvent = ({ start, end }) => {
+    const myEndDate = moment(end).subtract(1, "second")._d;
+
     setIsAddEvent(true);
     const createEvent = {
       id: eventsData.length ? eventsData[eventsData.length - 1].id + 1 : 0,
       start: start,
-      end: end,
+      end: myEndDate,
       title: "",
       desc: "",
     };
@@ -29,7 +29,10 @@ const App = () => {
   };
 
   const onUpdateEvent = (event) => {
-    setAddAndUpdateEvent(eventsData[event.id]);
+    const index = eventsData.findIndex(
+      (eventDetails) => eventDetails.id === event.id
+    );
+    setAddAndUpdateEvent(eventsData[index]);
     setIsUpdateEvent(true);
   };
 
@@ -37,6 +40,7 @@ const App = () => {
     setIsUpdateEvent(false);
     setIsAddEvent(false);
   };
+
   return (
     <div className="container">
       <Calendar
@@ -51,7 +55,7 @@ const App = () => {
         className="my-calender"
       />
       {(isUpdateEvent || isAddEvent) && (
-        <UpdateModel
+        <AddUpdateEvent
           addAndUpdateEvent={addAndUpdateEvent}
           closeModel={closeModel}
           isAddEvent={isAddEvent}

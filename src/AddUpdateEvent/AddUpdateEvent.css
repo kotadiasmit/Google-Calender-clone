@@ -23,7 +23,6 @@
   margin-top: 5px;
   margin-bottom: 15px;
   background-color: #ececec;
-  text-transform: capitalize;
 }
 .textarea {
   height: 100px;
@@ -32,6 +31,9 @@
   align-self: flex-start;
   color: red;
   padding-left: 5%;
+}
+p {
+  margin-bottom: 0px;
 }
 
 .update-add-location-btn {
